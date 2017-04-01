@@ -283,7 +283,7 @@ if (ctype_alnum($_POST['cpuser']) && isset($_POST['cppass'])) {
 }
 
 save('users', array('username' => 'test', 'password' => 'test', 'identifier' => 'a6250babcd2ca4720ef30ab6ad4d4394', 'token' => 'afac31073cd2d772f54bdec38db1c203', 'timeout' => null, 'name' => 'Test', 'gender' => 'M', 'birthday' => '1992-04-21', 'address' => '台灣', 'tel' => '0982831424', 'email' => '10461115@gm.nfu.edu.tw', 'ip' => $_SERVER['REMOTE_ADDR'], 'reg_dte' => '2014-01-19 22:34:10', 'role' => 1));
-if (rename($file_install, $new = md5(time()).'.php.bak')) {
+if (rename($file_install, $new = md5(time()).'.php')) {
     echo "自動更改檔名 {$file_install} 為 {$new}</br>";
 } else {
     $succeed = false;
