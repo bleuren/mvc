@@ -1,0 +1,1 @@
+<a href="index.php?mod=sidebar"><?php echo $this->lang['sidebar.moduleName']; ?></a>

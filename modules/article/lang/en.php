@@ -1,0 +1,27 @@
+<?php
+
+$moduleLang = [
+'article.add' => 'New Article',
+'article.unselected' => 'Unselected',
+'article.addGroup' => 'Add New Group',
+'article.group' => 'Group',
+'article.url' => 'URL',
+'article.typeGroup' => 'Please type group name',
+'article.categoryOption' => ['News', 'Others'],
+'article.typeTitle' => 'Please type title',
+'article.chooseFile' => 'Please choose file',
+'article.submit' => 'Submit',
+'article.id' => 'ID',
+'article.category' => 'Category',
+'article.title' => 'Title',
+'article.dateTime' => 'Date',
+'article.search' => ['All' => 'All', 'ID' => 'Search by ID', 'Category' => 'Search by category', 'Title' => 'Search by title', 'DateTime' => 'Search by date'],
+'article.actions' => 'Actions',
+'article.update' => 'Update',
+'article.delete' => 'Delete',
+'article.deleteConfirm' => 'Do you really want to delete?',
+'article.yes' => 'Yes',
+'article.no' => 'No',
+'article.author' => 'Author',
+'article.moduleName' => 'Article',
+];

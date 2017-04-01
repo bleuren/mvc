@@ -1,0 +1,1 @@
+<a href="index.php?mod=article&act=group"><?php echo $this->lang['article.moduleName']; ?></a>

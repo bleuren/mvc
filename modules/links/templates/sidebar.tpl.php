@@ -1,0 +1,1 @@
+<a href='index.php?mod=links'><?php echo $this->lang['links.moduleName']; ?></a>

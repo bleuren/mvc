@@ -1,0 +1,1 @@
+<a href="index.php?mod=member"><?php echo $this->lang['member.moduleName']; ?></a>

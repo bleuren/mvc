@@ -1,0 +1,1 @@
+<a href='index.php?act=fileSystem'><?php echo $this->lang['fileSystem']; ?></a>

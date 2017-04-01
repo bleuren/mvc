@@ -1,0 +1,27 @@
+<?php
+
+$moduleLang = [
+'article.add' => '新增文章',
+'article.unselected' => '未選取',
+'article.addGroup' => '新增分類',
+'article.group' => '分類',
+'article.url' => '網址',
+'article.typeGroup' => '請輸入分類名稱',
+'article.categoryOption' => ['最新消息', '其他'],
+'article.typeTitle' => '請輸入標題',
+'article.chooseFile' => '請選擇檔案',
+'article.submit' => '送出',
+'article.id' => '編號',
+'article.category' => '分類',
+'article.title' => '標題',
+'article.dateTime' => '日期',
+'article.search' => ['All' => '所有欄位', 'ID' => '搜尋編號', 'Category' => '搜尋分類', 'Title' => '搜尋標題', 'DateTime' => '搜尋日期'],
+'article.actions' => '操作',
+'article.update' => '更新',
+'article.delete' => '刪除',
+'article.deleteConfirm' => '確認刪除?',
+'article.yes' => '是',
+'article.no' => '否',
+'article.author' => '發佈者',
+'article.moduleName' => '公告',
+];

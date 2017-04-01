@@ -1,0 +1,1 @@
+<a href='index.php?mod=activity'><?php echo $this->lang['activity.moduleName']; ?></a>

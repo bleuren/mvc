@@ -1,0 +1,23 @@
+RewriteEngine On
+Rewritebase /
+RewriteCond %{REQUEST_METHOD} ^(TRACE|OPTIONS)
+RewriteRule .* – [F]
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?mod=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?mod=$1
+RewriteRule ^([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)$ index.php?mod=$1&act=$2
+RewriteRule ^([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)/$ index.php?mod=$1&act=$2
+RewriteRule ^([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)$ index.php?mod=$1&act=$2&id=$3
+RewriteRule ^([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)/$ index.php?mod=$1&act=$2&id=$3
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php/$1 [L,QSA]
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+Options -Indexes
+#enable LoadModule headers_module modules/mod_headers.so
+Header append X-FRAME-OPTIONS "SAMEORIGIN"
+
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>

@@ -1,0 +1,1 @@
+<a href="index.php?mod=weeks"><?php echo $this->lang['weeks.moduleName']; ?></a>
