@@ -1,5 +1,3 @@
-# Ignore in this directory
-config.php
 *.bak
 # Except this file
 !.gitignore
