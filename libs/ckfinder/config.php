@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 function url()
 {
     return sprintf(
@@ -37,7 +38,16 @@ $config = array();
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_authentication
 
 $config['authentication'] = function () {
-    return $_SESSION['user']->role == 99;
+    if(!empty($_SESSION['user'])) {
+        if ($_SESSION['user']->role==99) {
+            $_SESSION['CKFinder_UserRole'] = 'administrator';
+        } else {
+            $_SESSION['CKFinder_UserRole'] = 'user';
+        }         
+        return true;
+    } else {
+        return false;
+    }
 };
 
 /*============================ License Key ============================================*/
@@ -73,12 +83,12 @@ $config['images'] = array(
 
 /*=================================== Backends ========================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_backends
-$baseDir = str_replace('libs/ckfinder/core/connector/php/connector.php', '', $_SERVER['SCRIPT_FILENAME']).'uploads/';
+$baseDir = str_replace('libs/ckfinder/core/connector/php/connector.php', '', $_SERVER['SCRIPT_FILENAME']).'uploads/users/';
 $config['backends'][] = array(
     'name' => 'default',
     'adapter' => 'local',
-    'baseUrl' => 'uploads/',
-    'root' => $baseDir, // Can be used to explicitly set the CKFinder user files directory.
+    'baseUrl' => 'uploads/users/'.md5($_SESSION['user']->email),
+    'root' => $baseDir.md5($_SESSION['user']->email), // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles' => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',
@@ -87,7 +97,7 @@ $config['backends'][] = array(
 /*================================ Resource Types =====================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_resourceTypes
 
-$config['defaultResourceTypes'] = '';
+$config['defaultResourceTypes'] = 'Images';
 
 $config['resourceTypes'][] = array(
     'name' => 'Files', // Single quotes not allowed.
@@ -117,17 +127,46 @@ $config['accessControl'][] = array(
     'role' => '*',
     'resourceType' => '*',
     'folder' => '/',
+    'FOLDER_VIEW' => false,
+    'FOLDER_CREATE' => false,
+    'FOLDER_RENAME' => false,
+    'FOLDER_DELETE' => false,
+    'FILE_VIEW' => false,
+    'FILE_UPLOAD' => false,
+    'FILE_RENAME' => false,
+    'FILE_DELETE' => false,
+    'IMAGE_RESIZE' => true,
+    'IMAGE_RESIZE_CUSTOM' => false,
+);
 
+$config['accessControl'][] = array(
+    'role' => 'administrator',
+    'resourceType' => '*',
+    'folder' => '/',
     'FOLDER_VIEW' => true,
     'FOLDER_CREATE' => true,
     'FOLDER_RENAME' => true,
     'FOLDER_DELETE' => true,
-
     'FILE_VIEW' => true,
     'FILE_UPLOAD' => true,
     'FILE_RENAME' => true,
     'FILE_DELETE' => true,
+    'IMAGE_RESIZE' => true,
+    'IMAGE_RESIZE_CUSTOM' => true,
+);
 
+$config['accessControl'][] = array(
+    'role' => 'user',
+    'resourceType' => '*',
+    'folder' => '/',
+    'FOLDER_VIEW' => true,
+    'FOLDER_CREATE' => false,
+    'FOLDER_RENAME' => false,
+    'FOLDER_DELETE' => false,
+    'FILE_VIEW' => true,
+    'FILE_UPLOAD' => true,
+    'FILE_RENAME' => true,
+    'FILE_DELETE' => true,
     'IMAGE_RESIZE' => true,
     'IMAGE_RESIZE_CUSTOM' => true,
 );
