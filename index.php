@@ -38,4 +38,3 @@ $controller->setRouter(new core\Router());
 $controller->run();
 echo '<!-- 網站設計 © 2017 DivStudio(任家輝,paste.ren@gmail.com) -->';
 echo memory_get_usage();
-var_dump($_SESSION['CKFinder_UserRole']);

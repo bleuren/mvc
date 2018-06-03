@@ -267,6 +267,7 @@
 					<!--add pjax class under this quote-->
 					<div class="widget widget-categories">
 						<h4><?php echo $this->lang['sidebar']; ?> <span class="head-line"></span></h4>
+			
 						<ul>
 							<?php foreach ($this->sidebar as $i => $v): ?>
 							<li><a href="<?php echo $v->url; ?>" target="<?php echo $v->target; ?>"><?php echo $v->name; ?></a></li>
@@ -282,6 +283,7 @@
 							<?php if (!isset($_SESSION['user'])): ?>
                             <li><a href="index.php?mod=users"><?php echo $this->lang['users.signIn']; ?></a></li>
 							<?php else: ?>
+							<img class="img-fluid" width="160px" src="<?php echo $_SESSION['user']->photo; ?>" alt="<?php echo $_SESSION['user']->name; ?>">
 							<li>
 							<?php foreach ($this->module_menu as $v): ?>
 							<?php $this->render($v); ?>

@@ -35,6 +35,28 @@ class Controller extends CoreController
         $view->setVar('content', 'modules/users/templates/fail.tpl.php');
         $view->render(TEMPLATE_DIR.'index.tpl.php');
     }
+    protected function signup(): void
+    {
+        $view = $this->view;
+        $view->setVar('content', 'modules/users/templates/signup.tpl.php');
+        $view->render(TEMPLATE_DIR.'index.tpl.php');
+    }
+    protected function doSignup(): void
+    {
+        $data = array('username' => $this->postQuery('username'),
+                    'password' => $this->postQuery('password'),
+                    'name' => $this->postQuery('name'),
+                    'gender' => $this->postQuery('gender'),
+                    'birthday' => $this->postQuery('birthday'),
+                    'email' => $this->postQuery('email'),
+                    'address' => $this->postQuery('address'),
+                    'telephone' => $this->postQuery('telephone'),
+                    'photo' => 'modules/users/templates/images/default-user-image.png',
+                    'role' => 1
+                    );            
+        $this->users->add($data);
+        $this->redirectTo('index.php?mod=users&act=success');
+    }
     protected function dologin(): void
     {
         $username = $this->postQuery('username');

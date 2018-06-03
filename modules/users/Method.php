@@ -34,6 +34,11 @@ class Method extends Model
             exit;
         }
     }
+    public function add($data)
+    {
+        $data['ip'] = '::1';
+        return $this->table->save($data);
+    }
     public function login($username, $password, $captcha, $csrf)
     {
         

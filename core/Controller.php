@@ -50,6 +50,7 @@ abstract class Controller
     {
         $this->module = explode('\\', get_class($this))[1];
         $this->view->setVar('module', $this->module);
+        $this->view->setVar('role', $_SESSION['user']->role ?? 0);
         $array = scandir(APP_REAL_PATH.'/modules');
         $lang = array();
         array_walk($this->setFile($array, function ($v) {
@@ -83,7 +84,10 @@ abstract class Controller
         if ($result = in_array($_SESSION['user']->role ?? 0, $priv)) {
             return $result;
         } else {
-            $this->redirectTo('index.php?mod=users');
+            $view = $this->view;
+            $view->setVar('reason', 'priv');
+            $view->setVar('content', 'modules/users/templates/deny.tpl.php');
+            $view->render(TEMPLATE_DIR.'index.tpl.php');
             die;
         }
 
