@@ -43,8 +43,8 @@ class Controller extends CoreController
     protected function itemSort(): void
     {
         $this->priv([99, 1]);
-        $query_string = $this->getQuery('query');
-        $query = json_decode($query_string);
+        $query_string = $this->postQuery('query');
+        $query = json_decode(htmlspecialchars_decode($query_string));
         foreach ($query[0] as $i => $v) {
             if (isset($v->children[0])) {
                 $child = $v->children[0];

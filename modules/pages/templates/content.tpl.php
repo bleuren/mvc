@@ -60,15 +60,20 @@ var group = $("ol.limited_drop_targets").sortable({
 	console.log(jsonString);
     $('#serialize_output').text(jsonString);
 	$.ajax({
-		type: "GET",
-		url: "index.php?mod=pages&act=itemSort&query=" + jsonString,
-		dataType: "json",
+		type: "POST",
+		data: {query:jsonString},
+		url: "index.php?mod=pages&act=itemSort",
 		success: function(data) {
 			$('#serialize_output').text(data.toSource());
 		},
-		error: function(jqXHR) {
-			alert("發生錯誤: " + jqXHR.status);
-		}
+		error: function (jqXHR, textStatus, errorThrown) {
+            alert(jqXHR.responseText);
+            alert(jqXHR.status);
+            alert(jqXHR.readyState);
+            alert(jqXHR.statusText);
+            alert(textStatus);
+            alert(errorThrown);
+    }
 	});	
     _super($item, container);
   }
