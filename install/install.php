@@ -139,39 +139,39 @@ function save($table, $data)
     return $value;
 }
 echo '建立資料表</br>';
-creatTable('activities', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('activities', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `url` varchar(200) NOT NULL,
   `description` text NOT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)');
-creatTable('articles', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('articles', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `category` text NOT NULL,
   `title` text NOT NULL,
   `content` text NOT NULL,
   `file1` text,
   `file2` text,
   `file3` text,
-  `author` int(5) NOT NULL,
+  `author` int(8) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)');
-creatTable('articles_group', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('articles_group', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)');
-creatTable('articles_file', '`articles_id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('articles_file', '`articles_id` int(8) NOT NULL AUTO_INCREMENT,
   `path` varchar(100) NOT NULL,
   PRIMARY KEY (`articles_id`,`path`)');
-creatTable('downloads', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('downloads', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `group` varchar(20) NOT NULL,
   `name` text NOT NULL,
   `path` text NOT NULL,
-  `author` int(5) NOT NULL,
+  `author` int(8) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `group` (`group`)');
-creatTable('downloads_group', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('downloads_group', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)');
-creatTable('links', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('links', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `url` varchar(100) NOT NULL,
   `logo` varchar(200) NOT NULL,
@@ -189,7 +189,7 @@ creatTable('pages', '`id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `content` text,
   `url` text,
-  `uid` int(5) NOT NULL,
+  `uid` int(8) NOT NULL,
   `display` int(1) NOT NULL DEFAULT \'1\',
   `upd_dte` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `lft` int(11) NOT NULL,
@@ -206,21 +206,21 @@ creatTable('shop_allpay', '`MerchantID` varchar(10) NOT NULL,
   `TradeDate` varchar(20) NOT NULL,
   `SimulatePaid` tinyint(4) NOT NULL,
   PRIMARY KEY (`MerchantTradeNo`)');
-creatTable('shop_categories', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('shop_categories', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `desc` text NOT NULL,
   PRIMARY KEY (`id`)');
-creatTable('shop_cate_prod', '`cate_id` int(5) NOT NULL,
-  `prod_id` int(5) NOT NULL,
+creatTable('shop_cate_prod', '`cate_id` int(8) NOT NULL,
+  `prod_id` int(8) NOT NULL,
   PRIMARY KEY (`cate_id`,`prod_id`)');
 creatTable('shop_orderdetails', '`oid` int(14) NOT NULL,
-  `pid` int(5) NOT NULL,
+  `pid` int(8) NOT NULL,
   `price` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT \'1\',
   `SKU` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`oid`,`pid`)');
 creatTable('shop_orders', '`id` varchar(20) NOT NULL,
-  `uid` int(5) NOT NULL,
+  `uid` int(8) NOT NULL,
   `name` varchar(32) NOT NULL,
   `address` text NOT NULL,
   `phone` varchar(10) NOT NULL,
@@ -229,7 +229,7 @@ creatTable('shop_orders', '`id` varchar(20) NOT NULL,
   `trackingNumber` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`id`)');
 creatTable('shop_products', '`id` varchar(32) NOT NULL,
-  `cid` int(5) NOT NULL,
+  `cid` int(8) NOT NULL,
   `name` varchar(32) NOT NULL,
   `desc` text,
   `cost` int(8) NOT NULL DEFAULT \'0\',
@@ -238,7 +238,7 @@ creatTable('shop_products', '`id` varchar(32) NOT NULL,
   `thumb` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL,
   `updateDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `stock` int(5) NOT NULL DEFAULT \'0\',
+  `stock` int(8) NOT NULL DEFAULT \'0\',
   `available` tinyint(4) NOT NULL DEFAULT \'0\',
   PRIMARY KEY (`id`)');
 creatTable('shop_prod_type', '`id` varchar(32) NOT NULL,
@@ -246,12 +246,12 @@ creatTable('shop_prod_type', '`id` varchar(32) NOT NULL,
   `name` text NOT NULL,
   `stock` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`,`pid`)');
-creatTable('sidebar', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('sidebar', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `url` text NOT NULL,
   `target` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`)');
-creatTable('users', '`id` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
+creatTable('users', '`id` int(8) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL,
   `password` varchar(32) NOT NULL,
   `identifier` varchar(32) DEFAULT NULL,
@@ -261,7 +261,8 @@ creatTable('users', '`id` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `gender` varchar(2) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
   `address` text,
-  `tel` varchar(10) DEFAULT NULL,
+  `telephone` varchar(10) DEFAULT NULL,
+  `photo` text NOT NULL,
   `email` varchar(50) NOT NULL,
   `ip` varchar(16) NOT NULL,
   `reg_dte` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -269,20 +270,20 @@ creatTable('users', '`id` int(5) unsigned zerofill NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`)');
-creatTable('weeks', '`id` int(5) NOT NULL AUTO_INCREMENT,
+creatTable('weeks', '`id` int(8) NOT NULL AUTO_INCREMENT,
   `year` year(4) NOT NULL,
   `month` int(2) NOT NULL,
   `week` int(2) NOT NULL,
   `file` text NOT NULL,
-  `author` int(5) NOT NULL,
+  `author` int(8) NOT NULL,
   PRIMARY KEY (`id`)');
 echo '寫入初始化資料</br>';
 save('pages', array('id' => 1, 'name' => 'DONT DELETE THIS!', 'uid' => '1', 'display' => 0, 'lft' => 1, 'rgt' => 2));
 if (ctype_alnum($_POST['cpuser']) && isset($_POST['cppass'])) {
-    save('users', array('username' => $_POST['cpuser'], 'password' => $_POST['cppass'], 'identifier' => 'a6250babcd2ca4720ef30ab6ad4d4394', 'token' => 'afac31073cd2d772f54bdec38db1c203', 'timeout' => null, 'name' => 'Administrator', 'gender' => 'M', 'birthday' => '1992-04-21', 'address' => '台灣', 'tel' => '0982831424', 'email' => 'paste.ren@gmail.com', 'ip' => $_SERVER['REMOTE_ADDR'], 'reg_dte' => '2014-01-19 22:34:10', 'role' => 99));
+    save('users', array('username' => $_POST['cpuser'], 'password' => $_POST['cppass'], 'identifier' => 'a6250babcd2ca4720ef30ab6ad4d4394', 'token' => 'afac31073cd2d772f54bdec38db1c203', 'timeout' => null, 'name' => 'Administrator', 'gender' => 'M', 'birthday' => '1992-04-21', 'address' => '台灣', 'telephone' => '0900000000', 'photo' => 'modules/users/templates/images/default-user-image.png', 'email' => 'bleuren.me@gmail.com', 'ip' => $_SERVER['REMOTE_ADDR'], 'reg_dte' => '2014-01-19 22:34:10', 'role' => 99));
 }
 
-save('users', array('username' => 'test', 'password' => 'test', 'identifier' => 'a6250babcd2ca4720ef30ab6ad4d4394', 'token' => 'afac31073cd2d772f54bdec38db1c203', 'timeout' => null, 'name' => 'Test', 'gender' => 'M', 'birthday' => '1992-04-21', 'address' => '台灣', 'tel' => '0982831424', 'email' => '10461115@gm.nfu.edu.tw', 'ip' => $_SERVER['REMOTE_ADDR'], 'reg_dte' => '2014-01-19 22:34:10', 'role' => 1));
+save('users', array('username' => 'test', 'password' => 'test', 'identifier' => 'a6250babcd2ca4720ef30ab6ad4d4394', 'token' => 'afac31073cd2d772f54bdec38db1c203', 'timeout' => null, 'name' => 'Test', 'gender' => 'M', 'birthday' => '1992-04-21', 'address' => '台灣', 'telephone' => '0900000000', 'photo' => 'modules/users/templates/images/default-user-image.png', 'email' => 'test@test.test', 'ip' => $_SERVER['REMOTE_ADDR'], 'reg_dte' => '2014-01-19 22:34:10', 'role' => 1));
 if (rename($file_install, $new = md5(time()).'.php.bak')) {
     echo "自動更改檔名 {$file_install} 為 {$new}</br>";
 } else {
